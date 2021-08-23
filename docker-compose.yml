@@ -1,0 +1,38 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:12.1
+    environment:
+      POSTGRES_USER: ipro
+    ports:
+      - '5432:5432'
+    volumes:
+      - ipro-db:/var/lib/postgresql/data
+
+  web:
+    build:
+      context: .
+      args:
+        - HOME
+        - USER
+        - UID
+    user: "${UID}:100"
+    tty: true
+    stdin_open: true
+    command:
+      sh -c "bundle exec rake db:migrate 2>/dev/null || bundle exec rake db:create db:migrate && rm -f tmp/pids/server.pid && bundle exec puma -C config/puma.rb"
+    depends_on:
+      - db
+    ports:
+      - 3000:3000
+    environment:
+      POSTGRES_USER: ipro
+      POSTGRES_HOST: db
+      RAILS_ENV: development
+    volumes:
+      - .:$HOME
+      - bundler_gems:/usr/local/bundle/
+
+volumes:
+  ipro-db:
+  bundler_gems:
