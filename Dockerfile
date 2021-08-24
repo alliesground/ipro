@@ -9,6 +9,7 @@ RUN apk add --update --no-cache \
     nodejs-current \
     yarn \
     tzdata \
+    vim \
     imagemagick
 
 ARG USER

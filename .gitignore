@@ -25,3 +25,10 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+.ash_history
+.irb_history
+.psql_history
+.viminfo
+
+/config/credentials/development.key
