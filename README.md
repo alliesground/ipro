@@ -10,4 +10,5 @@ Running the application locally
   `export UID=$(id -u)`
 
 * From inside the project root folder run `docker-compose up --build`
+---
 
