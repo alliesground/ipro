@@ -10,7 +10,8 @@ class Price < ApplicationRecord
       Stripe::Price.create({
         unit_amount: base_price_cents,
         product: product.stripe_id,
-        currency: 'aud'
+        currency: 'aud',
+        recurring: {interval: 'month'}
       })
     end
   end
