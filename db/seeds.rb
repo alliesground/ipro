@@ -15,6 +15,15 @@ unless Product.exists?
       { base_price_cents: 2000 }
     ])
   end
+
+  ActiveRecord::Base.transaction do
+    product_b = Product.create!(name: 'product-B')
+
+    product_b.prices.create!([
+      { base_price_cents: 1000 },
+      { base_price_cents: 2000 }
+    ])
+  end
 end
 
 
