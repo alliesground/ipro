@@ -6,13 +6,15 @@ class Price < ApplicationRecord
   private
 
   def create_stripe_price
-    if product.stripe_id.present?
-      Stripe::Price.create({
-        unit_amount: base_price_cents,
-        product: product.stripe_id,
-        currency: 'aud',
-        recurring: {interval: 'month'}
-      })
-    end
+    return unless product.stripe_id.present?
+    
+    stripe_price = Stripe::Price.create({
+      unit_amount: base_price_cents,
+      product: product.stripe_id,
+      currency: 'aud',
+      recurring: {interval: 'month'}
+    })
+
+    update(:stripe_id: stripe_price.id)
   end
 end
