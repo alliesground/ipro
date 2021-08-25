@@ -4,7 +4,8 @@ class V1::SubscriptionsController < V1::ApiController
   def create
     subscription = Subscription.create!(
       user_id: current_user.id,
-      product_id: subscription_params[:product_id]
+      product_id: subscription_params[:product_id],
+      price_id: subscription_params[:price_id]
     )
 
     render json: subscription, status: :created

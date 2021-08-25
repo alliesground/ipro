@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_25_055922) do
+ActiveRecord::Schema.define(version: 2021_08_25_094701) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,8 @@ ActiveRecord::Schema.define(version: 2021_08_25_055922) do
     t.string "strip_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "price_id", null: false
+    t.index ["price_id"], name: "index_subscriptions_on_price_id"
     t.index ["product_id"], name: "index_subscriptions_on_product_id"
     t.index ["user_id"], name: "index_subscriptions_on_user_id"
   end
@@ -50,6 +52,7 @@ ActiveRecord::Schema.define(version: 2021_08_25_055922) do
   end
 
   add_foreign_key "prices", "products"
+  add_foreign_key "subscriptions", "prices"
   add_foreign_key "subscriptions", "products"
   add_foreign_key "subscriptions", "users"
 end

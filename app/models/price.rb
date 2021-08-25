@@ -1,5 +1,6 @@
 class Price < ApplicationRecord
   belongs_to :product
+  has_many :subscriptions
 
   after_create_commit :create_stripe_price
 
