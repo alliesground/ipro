@@ -4,5 +4,6 @@ Rails.application.routes.draw do
     
     resources :products, only: [:index]
     resources :subscriptions, only: [:create]
+    resource :profile, only: [:show]
   end
 end
