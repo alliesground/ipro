@@ -1,5 +1,8 @@
 class User < ApplicationRecord
   before_create :generate_token
+  has_many :subscriptions
+  has_many :products, through: :subscriptions
+
   after_create_commit :onboard_stripe_customer
 
   private

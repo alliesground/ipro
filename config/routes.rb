@@ -3,5 +3,6 @@ Rails.application.routes.draw do
     post '/signup', to: 'users#create', as: 'signup'
     
     resources :products, only: [:index]
+    resources :subscriptions, only: [:create]
   end
 end

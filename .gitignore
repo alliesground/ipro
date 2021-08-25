@@ -32,3 +32,4 @@
 .viminfo
 
 /config/credentials/development.key
+.local/

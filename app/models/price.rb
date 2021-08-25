@@ -15,6 +15,6 @@ class Price < ApplicationRecord
       recurring: {interval: 'month'}
     })
 
-    update(:stripe_id: stripe_price.id)
+    update({stripe_id: stripe_price.id})
   end
 end
